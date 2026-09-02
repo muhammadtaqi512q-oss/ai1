@@ -1,0 +1,7 @@
+kivy
+g4f
+requests
+urllib3
+certifi
+charset-normalizer
+idna
