@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TAQI Browser</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+            color: #202124;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Browser Navigation Bar (Address Bar) */
+        .browser-toolbar {
+            display: flex;
+            align-items: center;
+            padding: 8px 14px;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            gap: 12px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #5f6368;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #5f6368;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            padding: 6px;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #f1f3f4;
+        }
+
+        .address-bar-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #f1f3f4;
+            border-radius: 20px;
+            padding: 0 16px;
+            height: 38px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .address-bar-wrapper:focus-within {
+            background: #ffffff;
+            border-color: #003366;
+            box-shadow: 0 1px 6px rgba(0, 51, 102, 0.2);
+        }
+
+        /* Top Bar T Icon (Google G ki jagah) */
+        .top-t-logo {
+            width: 20px;
+            height: 20px;
+            background: #003366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .top-url-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #5f6368;
+        }
+
+        .user-profile-circle {
+            width: 28px;
+            height: 28px;
+            background: #202124;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Main Page Area */
+        .main-viewport {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-top: -30px;
+        }
+
+        /* Top Right Circle Avatar on Page */
+        .page-avatar-container {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+        }
+
+        .page-avatar {
+            width: 38px;
+            height: 38px;
+            background: #003366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        /* TAQI Branding Title */
+        .brand-title {
+            font-size: 82px;
+            font-weight: 700;
+            color: #003366;
+            letter-spacing: -1.5px;
+            margin-bottom: 28px;
+            user-select: none;
+        }
+
+        /* Page Search Box */
+        .center-search-wrapper {
+            width: 550px;
+            max-width: 90vw;
+            position: relative;
+        }
+
+        .center-search-input {
+            width: 100%;
+            height: 48px;
+            padding: 0 20px 0 48px;
+            font-size: 15px;
+            background: #ffffff;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            outline: none;
+            color: #202124;
+            transition: all 0.2s ease;
+        }
+
+        .center-search-input:hover, .center-search-input:focus {
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+            border-color: rgba(223, 225, 229, 0);
+        }
+
+        .search-glass-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: #5f6368;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Browser Bar (Address & Navigation Controls) -->
+    <div class="browser-toolbar">
+        <div class="nav-icons">
+            <button class="nav-btn" onclick="window.history.back()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
+            <button class="nav-btn" onclick="window.history.forward()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </button>
+            <button class="nav-btn" onclick="window.location.reload()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            </button>
+        </div>
+
+        <!-- URL Address Bar -->
+        <div class="address-bar-wrapper">
+            <div class="top-t-logo">T</div>
+            <input type="text" id="topUrlInput" class="top-url-input" placeholder="Ask TAQI or type a URL" autofocus>
+        </div>
+
+        <div class="toolbar-actions">
+            <button class="nav-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            </button>
+            <div class="user-profile-circle">T</div>
+            <button class="nav-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Homepage Viewport -->
+    <div class="main-viewport">
+        <!-- Top Right Avatar Icon -->
+        <div class="page-avatar-container">
+        </div>
+
+        <!-- Center TAQI Logo -->
+        <div class="brand-title">TAQI</div>
+
+        <!-- Center Search Box -->
+        <div class="center-search-wrapper">
+            <svg class="search-glass-icon" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input type="text" id="centerSearchInput" class="center-search-input" placeholder="Search TAQI Database...">
+        </div>
+    </div>
+
+    <script>
+        function handleNavigation(query) {
+            query = query.trim();
+            if (!query) return;
+
+            if (query.startsWith('http://') || query.startsWith('https://')) {
+                window.location.href = query;
+            } else if (query.includes('.') && !query.includes(' ')) {
+                window.location.href = 'https://' + query;
+            } else {
+                window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+            }
+        }
+
+        // Top URL Bar event listener
+        document.getElementById('topUrlInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') handleNavigation(this.value);
+        });
+
+        // Center Search Box event listener
+        document.getElementById('centerSearchInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') handleNavigation(this.value);
+        });
+    </script>
+</body>
+</html>
